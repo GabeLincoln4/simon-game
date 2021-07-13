@@ -1,0 +1,50 @@
+body {
+  background-color:#39A2DB;
+  font-family: 'Yomogi', cursive;
+  font-weight: 400;
+  padding: 5% 35% 5%;
+  text-align:center;
+}
+
+h1 {
+  font-size: 5rem;
+  color: white;
+}
+
+.square {
+  border:3px;
+  border-radius:20px;
+  border-style: solid;
+  display: inline-block;
+  width: 10rem;
+  height: 10rem;
+}
+
+.col-md-6 {
+  padding:10%;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}
+
+.clicked-square {
+  border-color: white;
+}
+
+/* CSS Called with JS */
+.white-border {
+  border-color:white;
+}
