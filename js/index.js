@@ -1,4 +1,3 @@
-
 var redNoise = new Audio("sounds/red.mp3");
 var yellowNoise = new Audio("sounds/yellow.mp3");
 var blueNoise = new Audio("sounds/blue.mp3");
@@ -30,25 +29,88 @@ var yellowSquare = new ColorSquare(2, yellowNoise, yellow);
 var greenSquare = new ColorSquare(3, greenNoise, green);
 var blueSquare = new ColorSquare(4, blueNoise, blue);
 
+
 $(document).keydown(function(event) {
   if (event.key === "a") {
     console.log("Program has started.");
+    // console.log("This is simon game main")
     $("h1").text("Level 1");
 
 
     var selectedColor = randomizeSquare();
 
-    $(".red").click(function() {
-      if (this === selectedColor) {
-        redSquare.noise.play();
-        randomizeSquare();
-      } else {
-        wrongNoise.play();
-      }
-    });
+    while (winning === true) {
+      console.log("winning is true");
+      winning = false;
+
+      $(red).click(function() {
+        if (redSquare.randVal === selectedColor) {
+          redSquare.noise.play();
+          redSquare.animate();
+          winning = true;
+          setTimeout(function() {
+            selectedColor = randomizeSquare();
+          }, 500);
+        } else {
+          wrongNoise.play();
+          winning = false;
+          losingHeader();
+        }
+      });
+
+      $(blue).click(function() {
+        if (blueSquare.randVal === selectedColor) {
+          blueSquare.noise.play();
+          blueSquare.animate();
+          winning = true;
+          setTimeout(function() {
+            selectedColor = randomizeSquare();
+          }, 500);
+        } else {
+          wrongNoise.play();
+          winning = false;
+          losingHeader();
+        }
+      });
+
+      $(green).click(function() {
+        if (greenSquare.randVal === selectedColor) {
+          greenSquare.noise.play();
+          greenSquare.animate();
+          winning = true;
+          setTimeout(function() {
+            selectedColor = randomizeSquare();
+          }, 500);
+        } else {
+          wrongNoise.play();
+          winning = false;
+          losingHeader();
+        }
+      });
+
+      $(yellow).click(function() {
+        if (yellowSquare.randVal === selectedColor) {
+          yellowSquare.noise.play();
+          yellowSquare.animate();
+          winning = true;
+          setTimeout(function() {
+            selectedColor = randomizeSquare();
+          }, 500);
+        } else {
+          wrongNoise.play();
+          winning = false;
+          losingHeader();
+        }
+      });
+
+
+    }
+    console.log("program has ended.");
   }
 
 });
+
+
 
 function randomizeSquare() {
   var randNum = Math.floor((Math.random() * 4) + 1);
@@ -57,81 +119,28 @@ function randomizeSquare() {
     console.log("red");
     redSquare.noise.play();
     redSquare.animate();
-    selected = redSquare.color;
+    selected = redSquare.randVal;
   } else if (randNum === yellowSquare.randVal) {
     console.log("yellow");
     yellowSquare.noise.play();
     yellowSquare.animate();
-    selected = yellowSquare.color;
+    selected = yellowSquare.randVal;
   } else if (randNum === blueSquare.randVal) {
     console.log("blue");
     blueSquare.noise.play();
     blueSquare.animate();
-    selected = blueSquare.color;
+    selected = blueSquare.randVal;
   } else {
     console.log("green");
     greenSquare.noise.play();
     greenSquare.animate();
-    selected = greenSquare.color;
+    selected = greenSquare.randVal;
   }
 
   return selected;
 }
 
-// $(".red").click(function() {
-//   if(this === redSquare.color) {
-//     redSquare.noise.play();
-//   } else {
-//     wrongNoise.play();
-//     winning = false;
-//   }
-// });
-//
-// $(".blue").click(function() {
-//   if(this === blueSquare.color) {
-//     blueSquare.noise.play();
-//   } else {
-//     wrongNoise.play();
-//     winning = false;
-//   }
-// });
-// };
 
-
-
-// var redClicked = redAnimation();
-//
-// if (randNum === redAnimation()) {
-//   console.log("correct");
-// }
-//
-// function redAnimation() {
-//   $(".red").click(function() {
-//     console.log("red clicked");
-//     var redNoise = new Audio("sounds/red.mp3");
-//     redNoise.play();
-//     $(".red").addClass("white-border");
-//     setTimeout(function() {
-//       $(".red").removeClass("white-border");
-//     }, 250);
-//     return 1;
-//   });
-// }
-//
-// function blueAnimation() {
-//   $(".blue").click(function() {
-//     console.log("blue clicked");
-//   });
-// }
-//
-// function yellowAnimation() {
-//   $(".yellow").click(function() {
-//     console.log("yellow clicked");
-//   });
-// }
-//
-// function greenAnimation() {
-//   $(".green").click(function() {
-//     console.log("green clicked");
-//   });
-// }
+function losingHeader() {
+  $("h1").text("Sorry Dedicated Player; You Have Lost");
+}
